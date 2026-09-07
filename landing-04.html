@@ -158,7 +158,7 @@
     .demo-play { color: var(--ink); background: var(--yellow); box-shadow: 4px 4px 0 var(--red); }
     .demo-play:hover { background: #ffd85d; box-shadow: 2px 2px 0 var(--red); }
     .demo-status { min-height: 20px; margin: 15px 0 0; color: #f5ddd4 !important; font-size: .7rem; font-weight: 750; }
-    .demo-option-visual { position: relative; min-width: 0; min-height: 700px; display: grid; place-items: center; overflow: hidden; padding: 32px; background: var(--red); }
+    .demo-option-visual { position: relative; min-width: 0; min-height: 760px; display: grid; place-items: center; overflow: hidden; padding: 32px; background: var(--red); }
     .demo-option-visual::before { content: ""; position: absolute; width: 420px; height: 420px; border: 2px solid rgba(255,255,255,.15); border-radius: 50%; }
     .demo-option-visual::after { content: ""; position: absolute; inset: 18px; border: 2px dashed rgba(255,255,255,.18); border-radius: 15px; pointer-events: none; }
     .demo-scene { position: relative; z-index: 1; width: 100%; max-width: 670px; }
@@ -175,7 +175,7 @@
     .mini-wa-avatar { display: grid; place-items: center; width: 30px; height: 30px; border: 2px solid white; border-radius: 50%; background: var(--red); font-size: .57rem; font-weight: 950; }
     .mini-wa-head strong { display: block; font-size: .69rem; }
     .mini-wa-head small { display: block; margin-top: 1px; color: #bde3da; font-size: .54rem; }
-    .mini-wa-body { min-height: 500px; display: flex; flex-direction: column; justify-content: flex-end; gap: 7px; padding: 15px 11px; background-color: #efeae2; background-image: radial-gradient(rgba(17,75,65,.08) 1px, transparent 1px); background-size: 13px 13px; }
+    .mini-wa-body { min-height: 555px; display: flex; flex-direction: column; justify-content: flex-end; gap: 7px; padding: 15px 11px; background-color: #efeae2; background-image: radial-gradient(rgba(17,75,65,.08) 1px, transparent 1px); background-size: 13px 13px; }
     .demo-chat-bubble { max-width: 89%; padding: 9px 10px; border-radius: 9px 9px 9px 2px; color: var(--ink); background: white; box-shadow: 0 2px 5px rgba(36,26,22,.1); font-size: .64rem; line-height: 1.35; }
     .demo-chat-bubble.customer { align-self: flex-end; border-radius: 9px 9px 2px 9px; background: #d9fdd3; }
     .transform-bridge { display: grid; justify-items: center; gap: 12px; color: white; }
@@ -268,7 +268,7 @@
       .flow-number { margin-bottom: 30px; }
       .benefit { grid-column: span 6; }
       .demo-copy { padding-bottom: 35px; }
-      .demo-option-visual { min-height: 700px; }
+      .demo-option-visual { min-height: 760px; }
     }
     @media (max-width: 640px) {
       .container { width: min(100% - 24px, 1180px); }
@@ -292,9 +292,9 @@
       .robot-mascot-delivery { right: -3px; bottom: -1px; width: 138px; filter: drop-shadow(4px 7px 0 rgba(36,26,22,.9)); }
       .marquee { justify-content: flex-start; animation: slide 13s linear infinite; }
       .benefit { grid-column: span 12; min-height: 205px; }
-      .demo-option-visual { min-height: 660px; padding: 29px 17px 39px; }
+      .demo-option-visual { min-height: 720px; padding: 29px 17px 39px; }
       .split-scene { grid-template-columns: minmax(0, 1fr) 35px minmax(0, 1.08fr); gap: 6px; }
-      .mini-wa-body { min-height: 465px; padding-inline: 7px; }
+      .mini-wa-body { min-height: 520px; padding-inline: 7px; }
       .transform-bridge { gap: 8px; }
       .bridge-copy { display: none; }
       .bridge-arrow { width: 26px; }
@@ -413,35 +413,36 @@
               <div class="mini-whatsapp">
                 <div class="mini-wa-head"><span class="mini-wa-avatar">SR</span><span><strong>Senhor Robô</strong><small>online agora</small></span></div>
                 <div class="mini-wa-body">
-                  <div class="demo-chat-bubble customer demo-anim demo-rise" style="--delay:.2s">Quero uma pizza grande.</div>
-                  <div class="demo-chat-bubble demo-anim demo-rise" style="--delay:.7s">Qual sabor você prefere?</div>
-                  <div class="demo-chat-bubble customer demo-anim demo-rise" style="--delay:1.2s">Meia calabresa, meia marguerita.</div>
-                  <div class="demo-chat-bubble customer demo-anim demo-rise" style="--delay:1.8s">Vocês têm borda recheada?</div>
-                  <div class="demo-chat-bubble demo-anim demo-rise" style="--delay:2.3s">Temos sim: catupiry ou cheddar. Qual prefere?</div>
-                  <div class="demo-chat-bubble customer demo-anim demo-rise" style="--delay:2.9s">Catupiry. E uma Coca-Cola 2 L.</div>
-                  <div class="demo-chat-bubble demo-anim demo-rise" style="--delay:3.5s">Qual o endereço para calcular a entrega?</div>
-                  <div class="demo-chat-bubble customer demo-anim demo-rise" style="--delay:4.1s">Rua das Flores, 120. Quanto fica a entrega?</div>
-                  <div class="demo-chat-bubble demo-anim demo-rise" style="--delay:4.7s">A entrega fica R$ 8. Como prefere pagar?</div>
-                  <div class="demo-chat-bubble customer demo-anim demo-rise" style="--delay:5.3s">Pix.</div>
+                  <div class="demo-chat-bubble demo-anim demo-rise" style="--delay:.15s">Olá! Seja bem-vindo ao [nome do seu estabelecimento]. Como posso ajudar?</div>
+                  <div class="demo-chat-bubble customer demo-anim demo-rise" style="--delay:.7s">Quero uma pizza grande.</div>
+                  <div class="demo-chat-bubble demo-anim demo-rise" style="--delay:1.25s">Claro! Qual sabor você prefere?</div>
+                  <div class="demo-chat-bubble customer demo-anim demo-rise" style="--delay:1.8s">Meia calabresa, meia marguerita.</div>
+                  <div class="demo-chat-bubble customer demo-anim demo-rise" style="--delay:2.35s">Vocês têm borda recheada?</div>
+                  <div class="demo-chat-bubble demo-anim demo-rise" style="--delay:2.9s">Temos sim. As opções são catupiry e cheddar. Qual você prefere?</div>
+                  <div class="demo-chat-bubble customer demo-anim demo-rise" style="--delay:3.5s">Catupiry. E uma Coca-Cola 2 L.</div>
+                  <div class="demo-chat-bubble demo-anim demo-rise" style="--delay:4.1s">Perfeito. Por favor, informe o endereço para eu calcular a entrega.</div>
+                  <div class="demo-chat-bubble customer demo-anim demo-rise" style="--delay:4.7s">Rua das Flores, 120. Quanto fica a entrega?</div>
+                  <div class="demo-chat-bubble demo-anim demo-rise" style="--delay:5.3s">Obrigado! A entrega fica em R$ 8. Como você prefere pagar?</div>
+                  <div class="demo-chat-bubble customer demo-anim demo-rise" style="--delay:5.9s">Pix, por favor.</div>
                 </div>
               </div>
             </div>
             <div class="transform-bridge" aria-hidden="true">
               <span class="bridge-copy">IA organiza</span>
-              <span class="bridge-arrow"><i class="bridge-dot" style="--delay:.95s"></i><i class="bridge-dot" style="--delay:1.95s"></i><i class="bridge-dot" style="--delay:2.95s"></i><i class="bridge-dot" style="--delay:3.95s"></i><i class="bridge-dot" style="--delay:4.95s"></i></span>
+              <span class="bridge-arrow"><i class="bridge-dot" style="--delay:1.05s"></i><i class="bridge-dot" style="--delay:2.05s"></i><i class="bridge-dot" style="--delay:3.05s"></i><i class="bridge-dot" style="--delay:4.05s"></i><i class="bridge-dot" style="--delay:5.05s"></i><i class="bridge-dot" style="--delay:6.05s"></i></span>
             </div>
             <div>
               <span class="demo-stage-label">Pedido pronto</span>
               <div class="structured-order">
                 <div class="structured-head"><strong>Pedido estruturado</strong><span>#NOVO</span></div>
                 <div class="structured-body">
-                  <div class="structured-row demo-anim demo-fill" style="--delay:.5s"><b>Item</b><span>Pizza grande</span></div>
-                  <div class="structured-row demo-anim demo-fill" style="--delay:1.5s"><b>Sabor</b><span>½ calabresa<br>½ marguerita</span></div>
-                  <div class="structured-row demo-anim demo-fill" style="--delay:2.65s"><b>Adicional</b><span>Borda de catupiry</span></div>
-                  <div class="structured-row demo-anim demo-fill" style="--delay:3.25s"><b>Bebida</b><span>Coca-Cola 2 L</span></div>
-                  <div class="structured-row demo-anim demo-fill" style="--delay:5.05s"><b>Entrega</b><span>R$ 8 · Rua das Flores, 120</span></div>
-                  <div class="structured-row demo-anim demo-fill" style="--delay:5.65s"><b>Pagamento</b><span>Pix</span></div>
-                  <div class="structured-ready demo-anim demo-stamp" style="--delay:6.25s">✓ Pronto para finalizar</div>
+                  <div class="structured-row demo-anim demo-fill" style="--delay:1s"><b>Item</b><span>Pizza grande</span></div>
+                  <div class="structured-row demo-anim demo-fill" style="--delay:2.1s"><b>Sabor</b><span>½ calabresa<br>½ marguerita</span></div>
+                  <div class="structured-row demo-anim demo-fill" style="--delay:3.25s"><b>Adicional</b><span>Borda de catupiry</span></div>
+                  <div class="structured-row demo-anim demo-fill" style="--delay:3.85s"><b>Bebida</b><span>Coca-Cola 2 L</span></div>
+                  <div class="structured-row demo-anim demo-fill" style="--delay:5.65s"><b>Entrega</b><span>R$ 8 · Rua das Flores, 120</span></div>
+                  <div class="structured-row demo-anim demo-fill" style="--delay:6.2s"><b>Pagamento</b><span>Pix</span></div>
+                  <div class="structured-ready demo-anim demo-stamp" style="--delay:6.8s">✓ Pronto para finalizar</div>
                 </div>
               </div>
             </div>
@@ -527,7 +528,7 @@
       demoStatus.textContent = 'Transformando a conversa em um pedido estruturado...';
       demoCompletionTimer = window.setTimeout(() => {
         demoStatus.textContent = 'Pedido estruturado e pronto para a equipe.';
-      }, 7000);
+      }, 7600);
     }
 
     play.addEventListener('click', replayDemoAnimation);
