@@ -1,0 +1,458 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Senhor Robô — seu atendente com IA para WhatsApp de pizzarias e delivery.">
+  <title>Senhor Robô — Seu delivery atendendo sem parar</title>
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Senhor Robô — Atende por você.">
+  <meta property="og:description" content="Atendimento com IA para WhatsApp de pizzarias, restaurantes e delivery.">
+  <meta property="og:url" content="https://henriquemaran.github.io/SenhorPedido/">
+  <meta property="og:image" content="https://henriquemaran.github.io/SenhorPedido/assets/og-senhor-robo.png">
+  <meta property="og:image:width" content="1731">
+  <meta property="og:image:height" content="909">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Senhor Robô — Atende por você.">
+  <meta name="twitter:description" content="Atendimento com IA para WhatsApp de pizzarias, restaurantes e delivery.">
+  <meta name="twitter:image" content="https://henriquemaran.github.io/SenhorPedido/assets/og-senhor-robo.png">
+  <link rel="icon" type="image/png" href="assets/logos/logo-03-garcom-digital.png">
+  <style>
+    :root {
+      --red: #e63d2e;
+      --red-dark: #bb241d;
+      --yellow: #ffce3a;
+      --cream: #fff6df;
+      --paper: #fffdf8;
+      --ink: #241a16;
+      --brown: #6f5549;
+      --line: #eadccb;
+      --green: #1f9c65;
+      --shadow: 0 22px 65px rgba(102, 41, 25, .16);
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body { margin: 0; overflow-x: hidden; color: var(--ink); background: var(--paper); font-family: Arial, Helvetica, sans-serif; -webkit-font-smoothing: antialiased; }
+    a { color: inherit; }
+    button, a { -webkit-tap-highlight-color: transparent; }
+    svg { display: block; }
+    .container { width: min(1180px, calc(100% - 40px)); margin-inline: auto; }
+    .section { padding: 105px 0; }
+    .kicker { display: inline-flex; align-items: center; gap: 8px; margin: 0 0 14px; color: var(--red); font-size: .72rem; font-weight: 900; letter-spacing: .12em; text-transform: uppercase; }
+    .kicker::before { content: ""; width: 22px; height: 3px; background: var(--red); }
+    h1, h2, h3, p { margin-top: 0; }
+    h1, h2, .display { font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif; font-weight: 900; text-transform: uppercase; }
+    h1 { margin-bottom: 20px; font-size: clamp(4rem, 9vw, 8.4rem); line-height: .83; letter-spacing: -.035em; }
+    h2 { margin-bottom: 18px; font-size: clamp(2.65rem, 5.2vw, 5.2rem); line-height: .92; letter-spacing: -.025em; }
+    h3 { margin-bottom: 10px; font-size: 1.08rem; }
+    p { color: var(--brown); line-height: 1.65; }
+    .section-heading { max-width: 760px; margin-bottom: 50px; }
+    .section-heading > p:last-child { max-width: 590px; font-size: 1.05rem; }
+
+    .topbar { padding: 9px 20px; color: #fff; background: var(--ink); font-size: .73rem; font-weight: 800; letter-spacing: .04em; text-align: center; }
+    .topbar span { color: var(--yellow); }
+    .nav-shell { position: absolute; top: 32px; left: 0; z-index: 20; width: 100%; padding-top: 12px; }
+    nav { display: flex; align-items: center; justify-content: space-between; padding: 17px 0; border-bottom: 2px solid rgba(52,29,20,.13); }
+    .brand { display: inline-flex; align-items: center; gap: 11px; font-weight: 950; text-decoration: none; letter-spacing: -.035em; }
+    .brand-badge { display: grid; place-items: center; width: 47px; height: 47px; }
+    .brand-badge img { width: 100%; height: 100%; object-fit: contain; filter: drop-shadow(2px 3px 0 rgba(36,26,22,.9)); }
+    .nav-links { display: flex; align-items: center; gap: 29px; }
+    .nav-links > a { font-size: .83rem; font-weight: 850; text-decoration: none; text-transform: uppercase; }
+    .btn {
+      display: inline-flex; align-items: center; justify-content: center; gap: 10px; min-height: 55px; padding: 0 24px;
+      border: 2px solid var(--ink); border-radius: 10px; color: #fff; background: var(--red); box-shadow: 4px 4px 0 var(--ink);
+      font: inherit; font-size: .88rem; font-weight: 900; text-decoration: none; text-transform: uppercase; cursor: pointer;
+      transition: transform .2s ease, box-shadow .2s ease, background .2s ease;
+    }
+    .btn:hover { transform: translate(2px, 2px); box-shadow: 2px 2px 0 var(--ink); background: #f14939; }
+    .btn:focus-visible, .faq-q:focus-visible, .demo-play:focus-visible { outline: 4px solid rgba(255,206,58,.65); outline-offset: 3px; }
+    .btn-small { min-height: 43px; padding-inline: 15px; font-size: .72rem; box-shadow: 3px 3px 0 var(--ink); }
+    .btn svg { width: 18px; }
+
+    .hero { position: relative; min-height: 840px; padding: 180px 0 88px; background: var(--cream); overflow: hidden; }
+    .hero::before { content: ""; position: absolute; width: 320px; height: 320px; right: -120px; top: 135px; border: 70px solid rgba(230,61,46,.1); border-radius: 50%; }
+    .hero::after { content: ""; position: absolute; left: -5%; right: -5%; bottom: -105px; height: 170px; background: var(--red); transform: rotate(-3deg); }
+    .hero-grid { position: relative; z-index: 1; display: grid; grid-template-columns: 1.05fr .95fr; gap: 45px; align-items: center; }
+    .hero-copy { position: relative; z-index: 3; }
+    .hero h1 span { display: inline-block; padding: 3px 12px 7px; color: var(--cream); background: var(--red); transform: rotate(-2deg); }
+    .hero-copy > p { max-width: 580px; margin-bottom: 28px; font-size: 1.15rem; }
+    .hero-actions { display: flex; align-items: center; gap: 18px; flex-wrap: wrap; }
+    .hero-note { max-width: 190px; margin: 0; color: #796057; font-size: .78rem; font-weight: 700; line-height: 1.4; }
+    .hero-note strong { color: var(--ink); }
+    .delivery-tags { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 38px; }
+    .delivery-tags span { padding: 8px 11px; border: 1px solid #ddcdb9; border-radius: 7px; color: #6d554b; background: rgba(255,255,255,.5); font-size: .68rem; font-weight: 850; text-transform: uppercase; }
+
+    .visual { position: relative; min-height: 560px; }
+    .burst { position: absolute; z-index: 0; left: 49%; top: 48%; width: 470px; height: 470px; border-radius: 50%; background: var(--yellow); transform: translate(-50%, -50%); }
+    .burst::before { content: ""; position: absolute; inset: 20px; border: 2px dashed rgba(36,26,22,.2); border-radius: 50%; animation: rotate 28s linear infinite; }
+    .pizza-stamp { position: absolute; z-index: 4; right: 5px; top: 22px; display: grid; place-items: center; width: 114px; height: 114px; border: 3px solid var(--ink); border-radius: 50%; color: var(--ink); background: white; box-shadow: 5px 5px 0 var(--ink); font-size: 2.9rem; transform: rotate(8deg); }
+    .pizza-stamp small { position: absolute; bottom: 12px; font-size: .55rem; font-weight: 950; letter-spacing: .12em; text-transform: uppercase; }
+    .wa-card { position: absolute; z-index: 2; left: 50%; top: 50%; width: min(375px, 88vw); overflow: hidden; border: 3px solid var(--ink); border-radius: 22px; background: #eae4dc; box-shadow: 12px 12px 0 rgba(36,26,22,.92); transform: translate(-50%, -50%) rotate(2deg); }
+    .wa-head { display: flex; align-items: center; gap: 11px; padding: 14px; color: #fff; background: #174d3c; }
+    .wa-avatar { display: grid; place-items: center; width: 39px; height: 39px; border-radius: 50%; background: var(--yellow); font-size: 1.15rem; }
+    .wa-head div { flex: 1; }
+    .wa-head strong { display: block; font-size: .86rem; }
+    .wa-head small { color: #aee0ca; font-size: .63rem; }
+    .wa-body { min-height: 362px; padding: 18px 13px 13px; background-color: #eee8df; background-image: linear-gradient(45deg, rgba(76,66,57,.035) 25%, transparent 25%, transparent 75%, rgba(76,66,57,.035) 75%); background-size: 18px 18px; }
+    .msg { width: fit-content; max-width: 86%; margin-bottom: 9px; padding: 9px 11px 7px; border-radius: 10px; background: #fff; box-shadow: 0 2px 4px rgba(45,33,27,.11); font-size: .76rem; line-height: 1.45; opacity: 0; animation: pop .4s ease forwards; }
+    .msg.customer { margin-left: auto; background: #d6f4e4; }
+    .msg:nth-child(2) { animation-delay: .4s; }
+    .msg:nth-child(3) { animation-delay: .8s; }
+    .msg:nth-child(4) { animation-delay: 1.2s; }
+    .msg:nth-child(5) { animation-delay: 1.6s; }
+    .msg time { float: right; margin: 5px 0 0 9px; color: #91877e; font-size: .52rem; }
+    .wa-input { display: flex; gap: 7px; padding: 8px; background: #eae4dc; }
+    .wa-input span:first-child { flex: 1; padding: 10px 12px; border-radius: 20px; color: #968d85; background: white; font-size: .68rem; }
+    .wa-send { display: grid; place-items: center; width: 36px; border-radius: 50%; color: white; background: var(--green); }
+    .wa-send svg { width: 15px; }
+    .ready-ticket { position: absolute; z-index: 5; left: 5px; bottom: 32px; width: 205px; padding: 16px; border: 2px solid var(--ink); border-radius: 8px; background: white; box-shadow: 5px 5px 0 var(--ink); transform: rotate(-4deg); }
+    .ready-ticket small { display: block; margin-bottom: 7px; color: var(--red); font-size: .6rem; font-weight: 950; letter-spacing: .1em; text-transform: uppercase; }
+    .ready-ticket strong { font-size: .9rem; text-transform: uppercase; }
+    .ready-ticket strong::before { content: "✓"; margin-right: 7px; color: var(--green); }
+    .robot-mascot-delivery { position: absolute; z-index: 6; right: -48px; bottom: -18px; width: 195px; height: auto; filter: drop-shadow(7px 12px 0 rgba(36,26,22,.9)); transform: rotate(-4deg); transition: transform .25s ease; }
+    .robot-mascot-delivery:hover { transform: rotate(0) translateY(-5px); }
+
+    .red-band { position: relative; z-index: 2; padding: 24px 0; color: white; background: var(--red); border-block: 3px solid var(--ink); overflow: hidden; }
+    .marquee { display: flex; justify-content: center; gap: clamp(22px, 5vw, 70px); font-size: .78rem; font-weight: 950; letter-spacing: .08em; text-transform: uppercase; white-space: nowrap; }
+    .marquee span::before { content: "★"; margin-right: clamp(22px, 5vw, 70px); color: var(--yellow); }
+    .marquee span:first-child::before { display: none; }
+
+    .problem { background: white; }
+    .problem-grid { display: grid; grid-template-columns: .9fr 1.1fr; gap: 72px; align-items: center; }
+    .problem-title { position: relative; }
+    .problem-title::after { content: "!"; position: absolute; z-index: 0; right: 0; top: -30px; color: rgba(230,61,46,.07); font-family: Impact, sans-serif; font-size: 17rem; line-height: 1; }
+    .problem-title > * { position: relative; z-index: 1; }
+    .problem-title p:last-child { max-width: 440px; }
+    .pain-board { display: grid; gap: 11px; padding: 13px; border: 2px solid var(--ink); border-radius: 15px; background: var(--cream); box-shadow: 8px 8px 0 var(--ink); }
+    .pain-row { display: flex; align-items: center; gap: 17px; padding: 20px; border: 1px solid var(--line); border-radius: 10px; background: white; }
+    .pain-row b { display: grid; place-items: center; flex: 0 0 43px; height: 43px; border-radius: 50%; color: white; background: var(--red); font-size: 1.15rem; }
+    .pain-row h3 { margin: 0 0 4px; }
+    .pain-row p { margin: 0; font-size: .85rem; }
+
+    .how { color: var(--cream); background: var(--ink); }
+    .how .kicker { color: var(--yellow); }
+    .how .kicker::before { background: var(--yellow); }
+    .how .section-heading > p:last-child { color: #baa89e; }
+    .order-flow { position: relative; display: grid; grid-template-columns: repeat(3, 1fr); gap: 25px; }
+    .order-flow::before { content: ""; position: absolute; top: 38px; left: 16%; right: 16%; border-top: 2px dashed rgba(255,206,58,.45); }
+    .flow-step { position: relative; z-index: 1; padding: 25px; border: 1px solid rgba(255,255,255,.13); border-radius: 14px; background: #30231e; }
+    .flow-number { display: grid; place-items: center; width: 56px; height: 56px; margin-bottom: 55px; border: 2px solid var(--yellow); border-radius: 50%; color: var(--ink); background: var(--yellow); font-weight: 950; box-shadow: 0 0 0 7px var(--ink); }
+    .flow-step h3 { color: #fff; font-size: 1.18rem; text-transform: uppercase; }
+    .flow-step p { margin: 0; color: #baa89e; font-size: .9rem; }
+
+    .benefits { background: var(--cream); }
+    .benefits-grid { display: grid; grid-template-columns: repeat(12, 1fr); gap: 14px; }
+    .benefit { grid-column: span 4; min-height: 230px; padding: 26px; border: 2px solid var(--ink); border-radius: 12px; background: white; box-shadow: 5px 5px 0 var(--ink); transition: transform .2s ease, box-shadow .2s ease; }
+    .benefit:nth-child(1), .benefit:nth-child(6) { background: var(--yellow); }
+    .benefit:hover { transform: translate(2px,2px); box-shadow: 3px 3px 0 var(--ink); }
+    .benefit-icon { display: grid; place-items: center; width: 45px; height: 45px; margin-bottom: 43px; border: 2px solid var(--ink); border-radius: 9px; color: white; background: var(--red); }
+    .benefit-icon svg { width: 22px; }
+    .benefit p { margin: 0; font-size: .87rem; }
+
+    .demo-layout { display: grid; grid-template-columns: .78fr 1.22fr; overflow: hidden; border: 3px solid var(--ink); border-radius: 18px; background: var(--ink); box-shadow: 10px 10px 0 var(--yellow); }
+    .demo-copy { padding: clamp(35px, 6vw, 68px); color: white; }
+    .demo-copy .kicker { color: var(--yellow); }
+    .demo-copy .kicker::before { background: var(--yellow); }
+    .demo-copy h2 { font-size: clamp(2.6rem, 4.8vw, 4.8rem); }
+    .demo-copy p { color: #c4b4ac; }
+    .demo-play { color: var(--ink); background: var(--yellow); box-shadow: 4px 4px 0 var(--red); }
+    .demo-play:hover { background: #ffd85d; box-shadow: 2px 2px 0 var(--red); }
+    .order-panel { display: grid; align-content: center; padding: 38px; background: var(--red); }
+    .order-paper { position: relative; max-width: 530px; width: 100%; margin: auto; padding: 30px; background: white; box-shadow: 10px 10px 0 rgba(36,26,22,.9); transform: rotate(1deg); }
+    .order-paper::after { content: ""; position: absolute; left: 0; right: 0; bottom: -11px; height: 12px; background: linear-gradient(135deg, white 6px, transparent 0) 0 0 / 12px 12px repeat-x; }
+    .receipt-head { display: flex; justify-content: space-between; gap: 20px; padding-bottom: 17px; border-bottom: 2px dashed #d9cec7; }
+    .receipt-head strong { font-size: .95rem; text-transform: uppercase; }
+    .receipt-head span { color: var(--red); font-size: .7rem; font-weight: 900; }
+    .receipt-line { display: grid; grid-template-columns: 1fr auto; gap: 18px; padding: 13px 0; border-bottom: 1px solid #eee6e0; opacity: .22; transform: translateX(-6px); transition: opacity .3s ease, transform .3s ease; }
+    .receipt-line b { font-size: .79rem; }
+    .receipt-line span { color: var(--brown); font-size: .74rem; text-align: right; }
+    .receipt-status { margin-top: 18px; padding: 13px; border: 2px solid var(--green); color: var(--green); font-size: .75rem; font-weight: 950; text-align: center; text-transform: uppercase; opacity: .2; transition: opacity .3s ease 1.35s; }
+    .order-paper.playing .receipt-line, .order-paper.playing .receipt-status { opacity: 1; transform: none; }
+    .order-paper.playing .receipt-line:nth-child(3) { transition-delay: .3s; }
+    .order-paper.playing .receipt-line:nth-child(4) { transition-delay: .6s; }
+    .order-paper.playing .receipt-line:nth-child(5) { transition-delay: .9s; }
+    .order-paper.playing .receipt-line:nth-child(6) { transition-delay: 1.2s; }
+
+    .before-after { background: #fff; }
+    .battle { display: grid; grid-template-columns: 1fr 1fr; border: 3px solid var(--ink); border-radius: 18px; overflow: hidden; box-shadow: 8px 8px 0 var(--ink); }
+    .battle-side { min-height: 430px; padding: clamp(30px, 5vw, 55px); }
+    .battle-side.before { background: #f5eee6; }
+    .battle-side.after { color: white; background: var(--red); }
+    .battle-label { display: inline-block; margin-bottom: 42px; padding: 7px 10px; border: 2px solid currentColor; font-size: .7rem; font-weight: 950; letter-spacing: .1em; text-transform: uppercase; }
+    .battle h3 { font-family: Impact, sans-serif; font-size: clamp(2rem, 4vw, 3.7rem); line-height: .96; text-transform: uppercase; }
+    .battle-list { list-style: none; margin: 25px 0 0; padding: 0; }
+    .battle-list li { display: flex; gap: 10px; padding: 10px 0; border-bottom: 1px solid rgba(57,38,30,.12); font-size: .9rem; font-weight: 750; }
+    .after .battle-list li { border-color: rgba(255,255,255,.22); }
+    .battle-list li::before { content: "×"; color: var(--red); font-weight: 950; }
+    .after .battle-list li::before { content: "✓"; color: var(--yellow); }
+
+    .about { position: relative; overflow: hidden; background: var(--cream); border-block: 3px solid var(--ink); }
+    .about::after { content: "DOIS AMIGOS • UM PROBLEMA REAL • "; position: absolute; right: -95px; top: 80px; width: 360px; color: rgba(230,61,46,.09); font-family: Impact, sans-serif; font-size: 4rem; line-height: .88; text-transform: uppercase; transform: rotate(90deg); }
+    .about-grid { position: relative; z-index: 1; display: grid; grid-template-columns: .96fr 1.04fr; gap: 75px; align-items: center; }
+    .founders-photo { position: relative; margin: 0; padding: 0 14px 15px 0; }
+    .founders-photo img { position: relative; z-index: 1; width: 100%; aspect-ratio: 4 / 5; object-fit: cover; border: 3px solid var(--ink); border-radius: 14px; box-shadow: 10px 10px 0 var(--red); }
+    .founders-stamp { position: absolute; z-index: 3; right: -14px; bottom: 42px; display: grid; place-items: center; width: 118px; height: 118px; padding: 15px; border: 3px solid var(--ink); border-radius: 50%; color: var(--ink); background: var(--yellow); box-shadow: 5px 5px 0 var(--ink); font-size: .68rem; font-weight: 950; line-height: 1.25; text-align: center; text-transform: uppercase; transform: rotate(8deg); }
+    .about-copy .story-lead { color: var(--ink); font-size: 1.16rem; font-weight: 750; line-height: 1.6; }
+    .about-copy > p { max-width: 610px; }
+    .founder-line { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 26px; }
+    .founder-line span { padding: 10px 13px; border: 2px solid var(--ink); border-radius: 7px; color: var(--ink); background: white; box-shadow: 3px 3px 0 var(--ink); font-size: .69rem; font-weight: 900; text-transform: uppercase; }
+
+    .faq-grid { display: grid; grid-template-columns: .7fr 1.3fr; gap: 75px; align-items: start; }
+    .faq-intro { position: sticky; top: 30px; }
+    .faq-intro p:last-child { max-width: 350px; }
+    .faq { border: 3px solid var(--ink); border-radius: 14px; overflow: hidden; box-shadow: 7px 7px 0 var(--ink); }
+    .faq-item + .faq-item { border-top: 2px solid var(--ink); }
+    .faq-q { display: flex; justify-content: space-between; gap: 20px; width: 100%; padding: 21px 23px; border: 0; color: var(--ink); background: white; font: inherit; font-size: .97rem; font-weight: 850; text-align: left; cursor: pointer; }
+    .faq-q b { flex: 0 0 27px; display: grid; place-items: center; height: 27px; border: 2px solid var(--ink); border-radius: 50%; background: var(--yellow); transition: transform .25s ease; }
+    .faq-q[aria-expanded="true"] b { transform: rotate(45deg); }
+    .faq-a { display: grid; grid-template-rows: 0fr; background: var(--cream); transition: grid-template-rows .3s ease; }
+    .faq-a > div { overflow: hidden; }
+    .faq-a p { margin: 0; padding: 0 65px 22px 23px; font-size: .88rem; }
+    .faq-item.open .faq-a { grid-template-rows: 1fr; }
+
+    .final { padding: 30px 0 25px; background: var(--yellow); border-top: 3px solid var(--ink); }
+    .final-inner { position: relative; padding: 92px 20px; text-align: center; overflow: hidden; }
+    .final-inner::before, .final-inner::after { position: absolute; font-size: 6rem; opacity: .17; }
+    .final-inner::before { content: "🍕"; left: 1%; top: 28px; transform: rotate(-18deg); }
+    .final-inner::after { content: "🍔"; right: 2%; bottom: 20px; transform: rotate(16deg); }
+    .final h2 { position: relative; z-index: 1; max-width: 850px; margin: 0 auto 21px; font-size: clamp(3rem, 6vw, 6.3rem); }
+    .final p { position: relative; z-index: 1; max-width: 580px; margin: 0 auto 28px; color: #5c443b; font-size: 1.02rem; }
+    .final .btn { position: relative; z-index: 1; }
+    footer { display: flex; align-items: center; justify-content: space-between; gap: 20px; padding: 25px 0 0; border-top: 2px solid rgba(36,26,22,.2); font-size: .75rem; font-weight: 750; }
+
+    .reveal { opacity: 0; transform: translateY(18px); transition: opacity .6s ease, transform .6s ease; }
+    .reveal.visible { opacity: 1; transform: none; }
+    @keyframes pop { 0% { opacity: 0; transform: scale(.96) translateY(7px); } 100% { opacity: 1; transform: none; } }
+    @keyframes rotate { to { transform: rotate(360deg); } }
+    @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; } .reveal { opacity: 1; transform: none; } }
+    @media (max-width: 920px) {
+      .nav-links > a:not(.btn) { display: none; }
+      .hero-grid, .problem-grid, .demo-layout, .faq-grid, .about-grid { grid-template-columns: 1fr; }
+      .hero { padding-top: 165px; }
+      .hero-copy { max-width: 730px; }
+      .visual { margin-top: 20px; }
+      .problem-grid, .faq-grid { gap: 48px; }
+      .faq-intro { position: static; }
+      .order-flow { grid-template-columns: 1fr; }
+      .order-flow::before { display: none; }
+      .flow-number { margin-bottom: 30px; }
+      .benefit { grid-column: span 6; }
+      .demo-copy { padding-bottom: 35px; }
+    }
+    @media (max-width: 640px) {
+      .container { width: min(100% - 24px, 1180px); }
+      .section { padding: 78px 0; }
+      .topbar { font-size: .62rem; }
+      .nav-shell { top: 30px; }
+      nav { padding: 12px 0; }
+      .brand { font-size: .82rem; }
+      .brand-badge { width: 40px; height: 40px; }
+      .btn-small { min-height: 39px; padding-inline: 10px; font-size: .63rem; }
+      .hero { min-height: auto; padding: 145px 0 85px; }
+      h1 { font-size: clamp(4.15rem, 20vw, 6.2rem); }
+      .hero-copy > p { font-size: 1rem; }
+      .hero-actions .btn { width: 100%; }
+      .hero-note { max-width: none; text-align: center; }
+      .visual { min-height: 510px; }
+      .burst { width: 360px; height: 360px; }
+      .pizza-stamp { right: -2px; top: 30px; width: 90px; height: 90px; font-size: 2.2rem; }
+      .wa-card { width: min(330px, 90vw); }
+      .ready-ticket { left: -1px; bottom: 16px; }
+      .robot-mascot-delivery { right: -3px; bottom: -1px; width: 138px; filter: drop-shadow(4px 7px 0 rgba(36,26,22,.9)); }
+      .marquee { justify-content: flex-start; animation: slide 13s linear infinite; }
+      .benefit { grid-column: span 12; min-height: 205px; }
+      .order-panel { padding: 29px 17px 39px; }
+      .order-paper { padding: 23px 18px; }
+      .battle { grid-template-columns: 1fr; }
+      .battle-side { min-height: auto; }
+      .founders-photo { padding-right: 7px; }
+      .founders-stamp { right: -2px; width: 98px; height: 98px; font-size: .58rem; }
+      .final-inner { padding: 76px 5px; }
+      footer { align-items: flex-start; flex-direction: column; }
+    }
+    @keyframes slide { to { transform: translateX(-55%); } }
+  </style>
+</head>
+<body>
+  <div class="topbar">Atendimento com IA para WhatsApp <span>•</span> feito para a hora do pico</div>
+  <header class="nav-shell">
+    <nav class="container" aria-label="Navegação principal">
+      <a class="brand" href="#inicio"><span class="brand-badge"><img src="assets/logos/logo-03-garcom-digital.png" alt="" width="1254" height="1254"></span>Senhor Robô</a>
+      <div class="nav-links">
+        <a href="#como">Como funciona</a><a href="#beneficios">Benefícios</a><a href="#quem-somos">Quem somos</a><a href="#faq">Dúvidas</a>
+        <a class="btn btn-small" href="https://wa.me/5511999999999" target="_blank" rel="noopener noreferrer">Quero ver funcionando</a>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero" id="inicio">
+      <div class="container hero-grid">
+        <div class="hero-copy">
+          <p class="kicker">Seu delivery sempre respondendo</p>
+          <h1>Atende<br><span>por você.</span></h1>
+          <p>Seu cliente chama. O atendente responde. O pedido chega pronto. Você foca na cozinha — a IA cuida da conversa.</p>
+          <div class="hero-actions">
+            <a class="btn" href="https://wa.me/5511999999999" target="_blank" rel="noopener noreferrer">Quero ver funcionando <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="m9 18 6-6-6-6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+            <p class="hero-note"><strong>Abra uma conversa.</strong><br>Veja a IA atendendo na prática.</p>
+          </div>
+          <div class="delivery-tags"><span>Pizzarias</span><span>Restaurantes</span><span>Hamburguerias</span><span>Delivery</span></div>
+        </div>
+
+        <div class="visual" aria-label="Conversa de pedido pelo WhatsApp">
+          <div class="burst"></div>
+          <div class="pizza-stamp">🍕<small>pedido novo</small></div>
+          <div class="wa-card">
+            <div class="wa-head"><span class="wa-avatar">🍕</span><div><strong>Atendimento da Pizzaria</strong><small>online • responde na hora</small></div></div>
+            <div class="wa-body">
+              <div class="msg customer">Boa noite! Tem pizza grande?<time>20:11</time></div>
+              <div class="msg">Tem sim! Qual sabor você gostaria?<time>20:11</time></div>
+              <div class="msg customer">Frango com catupiry. Com borda.<time>20:12</time></div>
+              <div class="msg">Ótima escolha! A borda pode ser catupiry ou cheddar. Qual prefere?<time>20:12</time></div>
+              <div class="msg customer">Catupiry. Vou pagar no cartão.<time>20:13</time></div>
+            </div>
+            <div class="wa-input"><span>Digite uma mensagem</span><span class="wa-send"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="m21 3-7 18-3.8-7.3L3 10l18-7Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg></span></div>
+          </div>
+          <div class="ready-ticket"><small>A cozinha recebe</small><strong>Pedido organizado</strong></div>
+          <img class="robot-mascot-delivery" src="assets/logos/logo-03-garcom-digital.png" alt="Garçom digital, mascote do Senhor Robô" width="1254" height="1254">
+        </div>
+      </div>
+    </section>
+
+    <div class="red-band" aria-label="Principais benefícios">
+      <div class="marquee"><span>responde na hora</span><span>não perde pedido</span><span>atende 24/7</span><span>aguenta o pico</span></div>
+    </div>
+
+    <section class="section problem" id="problema">
+      <div class="container problem-grid">
+        <div class="problem-title reveal"><p class="kicker">A correria é real</p><h2>Cozinha cheia. WhatsApp lotado.</h2><p>Quando todo mundo pede junto, a equipe precisa escolher entre produzir e responder. É aí que o cliente espera, o pedido se perde e a venda escapa.</p></div>
+        <div class="pain-board reveal">
+          <article class="pain-row"><b>1</b><div><h3>“Oi, ainda estão atendendo?”</h3><p>A mensagem chega e ninguém consegue responder na hora.</p></div></article>
+          <article class="pain-row"><b>2</b><div><h3>“Qual o valor com adicional?”</h3><p>A equipe para o que está fazendo para tirar a mesma dúvida outra vez.</p></div></article>
+          <article class="pain-row"><b>3</b><div><h3>“Esqueceram minha borda.”</h3><p>Detalhes espalhados na conversa viram erro na montagem.</p></div></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section how" id="como">
+      <div class="container">
+        <div class="section-heading reveal"><p class="kicker">Como funciona</p><h2>Mensagem entra.<br>Pedido sai.</h2><p>Sem formulário complicado para o cliente. É uma conversa normal no WhatsApp.</p></div>
+        <div class="order-flow">
+          <article class="flow-step reveal"><span class="flow-number">01</span><h3>Cliente chama</h3><p>Ele pede do jeito que já está acostumado: por mensagem.</p></article>
+          <article class="flow-step reveal"><span class="flow-number">02</span><h3>IA pergunta</h3><p>Confirma sabor, tamanho, adicionais, endereço e pagamento.</p></article>
+          <article class="flow-step reveal"><span class="flow-number">03</span><h3>Equipe recebe</h3><p>O pedido chega claro, reunido e pronto para finalizar.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section benefits" id="beneficios">
+      <div class="container">
+        <div class="section-heading reveal"><p class="kicker">No seu dia a dia</p><h2>Seu pico vende mais.<br>Sua equipe corre menos.</h2></div>
+        <div class="benefits-grid">
+          <article class="benefit reveal"><span class="benefit-icon"><svg viewBox="0 0 24 24" fill="none"><path d="m4 13 5 5L20 7" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span><h3>Menos pedidos perdidos</h3><p>Cada cliente recebe resposta e segue no atendimento.</p></article>
+          <article class="benefit reveal"><span class="benefit-icon"><svg viewBox="0 0 24 24" fill="none"><path d="M12 7v5l3 2M21 12a9 9 0 1 1-9-9" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></span><h3>Resposta imediata</h3><p>Sem deixar o cliente olhando para a tela.</p></article>
+          <article class="benefit reveal"><span class="benefit-icon"><svg viewBox="0 0 24 24" fill="none"><path d="M16 19h6M19 16v6M15 11a4 4 0 1 0 0-8 4 4 0 0 0 0 8ZM2 21a7 7 0 0 1 11-5.7" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></span><h3>Vários clientes juntos</h3><p>O movimento cresce sem criar uma fila de espera.</p></article>
+          <article class="benefit reveal"><span class="benefit-icon"><svg viewBox="0 0 24 24" fill="none"><path d="M12 3v3M12 18v3M3 12h3M18 12h3M5.6 5.6l2.1 2.1M16.3 16.3l2.1 2.1M5.6 18.4l2.1-2.1M16.3 7.7l2.1-2.1" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></span><h3>Atendimento 24/7</h3><p>O WhatsApp não precisa fechar quando a equipe sai.</p></article>
+          <article class="benefit reveal"><span class="benefit-icon"><svg viewBox="0 0 24 24" fill="none"><path d="M5 12h14M12 5l7 7-7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span><h3>Menos trabalho manual</h3><p>A IA repete as perguntas para sua equipe não precisar repetir.</p></article>
+          <article class="benefit reveal"><span class="benefit-icon"><svg viewBox="0 0 24 24" fill="none"><path d="m3 17 6-6 4 4 8-9M16 6h5v5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span><h3>Mais vendas no pico</h3><p>Mais conversas atendidas quando a procura aperta.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="demonstracao">
+      <div class="container demo-layout reveal">
+        <div class="demo-copy"><p class="kicker">Demonstração</p><h2>Do “oi” ao pedido pronto.</h2><p>Veja as informações aparecendo no resumo enquanto a IA conversa com o cliente.</p><button class="btn demo-play" id="playDemo" type="button">▶ Montar pedido</button></div>
+        <div class="order-panel">
+          <div class="order-paper" id="orderPaper">
+            <div class="receipt-head"><strong>Senhor Robô</strong><span>#NOVO</span></div>
+            <div class="receipt-line"><b>Pedido</b><span>Pizza grande</span></div>
+            <div class="receipt-line"><b>Sabor</b><span>Frango c/ catupiry</span></div>
+            <div class="receipt-line"><b>Adicional</b><span>Borda de catupiry</span></div>
+            <div class="receipt-line"><b>Pagamento</b><span>Cartão na entrega</span></div>
+            <div class="receipt-status">✓ Informações coletadas</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section before-after" id="antes-depois">
+      <div class="container">
+        <div class="section-heading reveal"><p class="kicker">Antes x depois</p><h2>Troque a fila de mensagens por pedidos organizados.</h2></div>
+        <div class="battle reveal">
+          <article class="battle-side before"><span class="battle-label">Antes</span><h3>O WhatsApp manda no ritmo.</h3><ul class="battle-list"><li>Respostas atrasadas</li><li>Equipe dividida</li><li>Detalhes esquecidos</li><li>Cliente desistindo</li></ul></article>
+          <article class="battle-side after"><span class="battle-label">Com Senhor Robô</span><h3>Você manda no ritmo.</h3><ul class="battle-list"><li>Atendimento na hora</li><li>Conversas simultâneas</li><li>Pedido bem organizado</li><li>Equipe focada na operação</li></ul></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section about" id="quem-somos">
+      <div class="container about-grid">
+        <figure class="founders-photo reveal">
+          <img src="assets/cesar-henrique.png" alt="Cesar e Henrique, amigos e fundadores do Senhor Robô" loading="lazy">
+          <figcaption class="founders-stamp">Cesar + Henrique<br>fundadores</figcaption>
+        </figure>
+        <div class="about-copy reveal">
+          <p class="kicker">Quem somos</p>
+          <h2>Da mesa do restaurante para a tela.</h2>
+          <p class="story-lead">Somos Cesar e Henrique, dois amigos que passaram anos no mundo corporativo e decidiram usar essa experiência para ajudar os comércios que fazem parte da nossa rotina.</p>
+          <p>O Senhor Robô começou com algo que vivemos como clientes: a demora para ser atendido, mensagens sem resposta e pedidos que não avançam quando o estabelecimento está cheio. Não era um problema distante. Acontecia nas pizzarias, restaurantes e deliveries que nós mesmos frequentamos.</p>
+          <p>Somos apaixonados por tecnologia e desenvolvimento de software. Amamos o que fazemos e acreditamos que a melhor tecnologia é a que resolve um problema real, deixa o trabalho mais leve e ajuda um bom comércio a vender melhor.</p>
+          <div class="founder-line"><span>2 amigos</span><span>Problemas reais</span><span>Software com propósito</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="faq">
+      <div class="container faq-grid">
+        <div class="faq-intro reveal"><p class="kicker">FAQ</p><h2>Tá com dúvida?</h2><p>O básico, sem enrolação. Para ver em ação, é só chamar no WhatsApp.</p></div>
+        <div class="faq reveal">
+          <article class="faq-item open"><button class="faq-q" type="button" aria-expanded="true"><span>O cliente precisa baixar outro aplicativo?</span><b aria-hidden="true">+</b></button><div class="faq-a"><div><p>Não. Ele continua pedindo pelo WhatsApp, como já faz hoje.</p></div></div></article>
+          <article class="faq-item"><button class="faq-q" type="button" aria-expanded="false"><span>A IA entende adicionais e observações?</span><b aria-hidden="true">+</b></button><div class="faq-a"><div><p>Ela conduz a conversa para coletar itens, sabores, adicionais e as informações necessárias ao pedido.</p></div></div></article>
+          <article class="faq-item"><button class="faq-q" type="button" aria-expanded="false"><span>Funciona quando chegam vários pedidos juntos?</span><b aria-hidden="true">+</b></button><div class="faq-a"><div><p>Sim. O sistema pode manter várias conversas ao mesmo tempo, sem misturar os clientes.</p></div></div></article>
+          <article class="faq-item"><button class="faq-q" type="button" aria-expanded="false"><span>Serve para restaurante e hamburgueria?</span><b aria-hidden="true">+</b></button><div class="faq-a"><div><p>Sim. A solução é voltada a pizzarias, restaurantes, hamburguerias e outras operações de delivery.</p></div></div></article>
+          <article class="faq-item"><button class="faq-q" type="button" aria-expanded="false"><span>Como vejo funcionando?</span><b aria-hidden="true">+</b></button><div class="faq-a"><div><p>Clique em “Quero ver funcionando” para abrir uma conversa no WhatsApp.</p></div></div></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="final">
+      <div class="container final-inner">
+        <h2>O pedido chega.<br>A correria não.</h2>
+        <p>Conheça o atendente com IA que conversa com seu cliente e entrega o pedido organizado para sua equipe.</p>
+        <a class="btn" href="https://wa.me/5511999999999" target="_blank" rel="noopener noreferrer">Quero ver funcionando <svg viewBox="0 0 24 24" fill="none"><path d="m9 18 6-6-6-6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+      </div>
+      <footer class="container"><span>Senhor Robô</span><span>Atendimento com IA para WhatsApp.</span></footer>
+    </section>
+  </main>
+
+  <script>
+    document.querySelectorAll('.faq-q').forEach((button) => {
+      button.addEventListener('click', () => {
+        const item = button.closest('.faq-item');
+        const wasOpen = item.classList.contains('open');
+        document.querySelectorAll('.faq-item').forEach((other) => {
+          other.classList.remove('open');
+          other.querySelector('.faq-q').setAttribute('aria-expanded', 'false');
+        });
+        if (!wasOpen) { item.classList.add('open'); button.setAttribute('aria-expanded', 'true'); }
+      });
+    });
+
+    const play = document.getElementById('playDemo');
+    const paper = document.getElementById('orderPaper');
+    play.addEventListener('click', () => {
+      paper.classList.remove('playing');
+      void paper.offsetWidth;
+      paper.classList.add('playing');
+      play.textContent = '↻ Montar novamente';
+    });
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) { entry.target.classList.add('visible'); observer.unobserve(entry.target); }
+      });
+    }, { threshold: .12 });
+    document.querySelectorAll('.reveal').forEach((element) => observer.observe(element));
+  </script>
+</body>
+</html>
