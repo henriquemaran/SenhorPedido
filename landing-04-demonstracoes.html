@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="Senhor Robô — atendimento com IA para WhatsApp de pizzarias, restaurantes e delivery.">
-  <title>Senhor Robô — Atende por você</title>
+  <title>Senhor Robô — 3 opções de demonstração</title>
   <meta property="og:type" content="website">
   <meta property="og:title" content="Senhor Robô — Atende por você.">
   <meta property="og:description" content="Atendimento com IA para WhatsApp de pizzarias, restaurantes e delivery.">
@@ -173,6 +173,116 @@
     .order-paper.playing .receipt-line:nth-child(5) { transition-delay: .9s; }
     .order-paper.playing .receipt-line:nth-child(6) { transition-delay: 1.2s; }
 
+    /* Três variações locais para a demonstração */
+    .demo-lab { overflow: hidden; background: var(--paper); }
+    .demo-picker { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-bottom: 22px; }
+    .demo-tab { min-height: 82px; display: flex; align-items: center; gap: 13px; padding: 16px 18px; border: 2px solid var(--ink); border-radius: 12px; color: var(--ink); background: white; box-shadow: 4px 4px 0 var(--ink); font: inherit; text-align: left; cursor: pointer; transition: transform .2s ease, box-shadow .2s ease, background .2s ease; }
+    .demo-tab:hover { transform: translate(2px, 2px); box-shadow: 2px 2px 0 var(--ink); }
+    .demo-tab[aria-selected="true"] { background: var(--yellow); box-shadow: 4px 4px 0 var(--red); }
+    .demo-tab-number { flex: 0 0 auto; display: grid; place-items: center; width: 38px; height: 38px; border: 2px solid var(--ink); border-radius: 50%; color: white; background: var(--red); font-size: .73rem; font-weight: 950; }
+    .demo-tab-copy { display: grid; gap: 2px; }
+    .demo-tab-copy strong { font-size: .78rem; text-transform: uppercase; letter-spacing: .02em; }
+    .demo-tab-copy small { color: var(--brown); font-size: .68rem; line-height: 1.3; }
+    .demo-panel[hidden] { display: none; }
+    .demo-panel .demo-layout { min-height: 590px; }
+    .demo-option-visual { position: relative; min-width: 0; min-height: 590px; display: grid; place-items: center; overflow: hidden; padding: 32px; background: var(--red); }
+    .demo-option-visual::before { content: ""; position: absolute; width: 420px; height: 420px; border: 2px solid rgba(255,255,255,.15); border-radius: 50%; }
+    .demo-option-visual::after { content: ""; position: absolute; inset: 18px; border: 2px dashed rgba(255,255,255,.18); border-radius: 15px; pointer-events: none; }
+    .demo-scene { position: relative; z-index: 1; width: 100%; max-width: 670px; }
+    .demo-copy .option-tag { display: inline-flex; align-items: center; gap: 7px; margin-bottom: 20px; padding: 7px 10px; border: 1px solid rgba(255,255,255,.34); border-radius: 999px; color: white; font-size: .64rem; font-weight: 900; letter-spacing: .08em; text-transform: uppercase; }
+    .demo-copy .option-tag::before { content: ""; width: 7px; height: 7px; border-radius: 50%; background: var(--yellow); box-shadow: 0 0 0 4px rgba(255,206,58,.14); }
+    .demo-copy .demo-explainer { margin-bottom: 24px; }
+    .demo-copy .demo-status { min-height: 20px; margin: 15px 0 0; color: #f5ddd4; font-size: .7rem; font-weight: 750; }
+    .demo-replay { border: 2px solid var(--ink); }
+    .demo-stage-label { display: inline-flex; align-items: center; gap: 7px; margin-bottom: 9px; color: white; font-size: .63rem; font-weight: 950; letter-spacing: .08em; text-transform: uppercase; }
+    .demo-stage-label::before { content: ""; width: 8px; height: 8px; border-radius: 50%; background: var(--yellow); }
+    .demo-anim { opacity: 0; }
+    .demo-panel.is-playing .demo-rise { animation: demoRise .42s cubic-bezier(.2,.75,.2,1) both; animation-delay: var(--delay, 0s); }
+    .demo-panel.is-playing .demo-fill { animation: demoFill .48s cubic-bezier(.2,.75,.2,1) both; animation-delay: var(--delay, 0s); }
+    .demo-panel.is-playing .demo-stamp { animation: demoStamp .5s cubic-bezier(.2,1.35,.25,1) both; animation-delay: var(--delay, 0s); }
+
+    /* Opção 1: conversa e resumo evoluem juntos */
+    .split-scene { display: grid; grid-template-columns: minmax(0, .94fr) 62px minmax(0, 1.06fr); gap: 12px; align-items: center; }
+    .mini-whatsapp, .structured-order, .source-thread, .live-board, .printer-chat, .receipt-sheet { border: 2px solid var(--ink); box-shadow: 6px 6px 0 rgba(36,26,22,.92); }
+    .mini-whatsapp { overflow: hidden; border-radius: 16px; background: #efeae2; }
+    .mini-wa-head { display: flex; align-items: center; gap: 8px; padding: 11px 12px; color: white; background: #075e54; }
+    .mini-wa-avatar { display: grid; place-items: center; width: 30px; height: 30px; border: 2px solid white; border-radius: 50%; background: var(--red); font-size: .57rem; font-weight: 950; }
+    .mini-wa-head strong { display: block; font-size: .69rem; }
+    .mini-wa-head small { display: block; margin-top: 1px; color: #bde3da; font-size: .54rem; }
+    .mini-wa-body { min-height: 374px; display: flex; flex-direction: column; justify-content: flex-end; gap: 8px; padding: 15px 11px; background-color: #efeae2; background-image: radial-gradient(rgba(17,75,65,.08) 1px, transparent 1px); background-size: 13px 13px; }
+    .demo-chat-bubble { max-width: 89%; padding: 9px 10px; border-radius: 9px 9px 9px 2px; color: var(--ink); background: white; box-shadow: 0 2px 5px rgba(36,26,22,.1); font-size: .64rem; line-height: 1.35; }
+    .demo-chat-bubble.customer { align-self: flex-end; border-radius: 9px 9px 2px 9px; background: #d9fdd3; }
+    .transform-bridge { display: grid; justify-items: center; gap: 12px; color: white; }
+    .bridge-copy { font-size: .54rem; font-weight: 900; letter-spacing: .08em; text-align: center; text-transform: uppercase; }
+    .bridge-arrow { position: relative; width: 48px; height: 3px; background: var(--yellow); }
+    .bridge-arrow::after { content: ""; position: absolute; right: -1px; top: -5px; width: 11px; height: 11px; border-top: 3px solid var(--yellow); border-right: 3px solid var(--yellow); transform: rotate(45deg); }
+    .bridge-dot { position: absolute; left: 0; top: -4px; width: 11px; height: 11px; border: 2px solid var(--ink); border-radius: 50%; background: white; opacity: 0; }
+    .demo-panel.is-playing .bridge-dot { animation: bridgeTravel 1s ease-in-out both; animation-delay: var(--delay); }
+    .structured-order { overflow: hidden; transform: rotate(1deg); background: white; }
+    .structured-head { display: flex; justify-content: space-between; gap: 8px; padding: 13px 14px; border-bottom: 2px dashed #d9cec7; }
+    .structured-head strong { font-size: .71rem; text-transform: uppercase; }
+    .structured-head span { color: var(--red); font-size: .58rem; font-weight: 950; }
+    .structured-body { padding: 7px 14px 14px; }
+    .structured-row { display: grid; grid-template-columns: .8fr 1.2fr; gap: 10px; padding: 9px 0; border-bottom: 1px solid #eee6e0; }
+    .structured-row b { font-size: .58rem; text-transform: uppercase; }
+    .structured-row span { color: var(--brown); font-size: .59rem; font-weight: 750; text-align: right; }
+    .structured-ready { margin-top: 12px; padding: 9px; border: 2px solid var(--green); color: var(--green); font-size: .58rem; font-weight: 950; text-align: center; text-transform: uppercase; }
+
+    /* Opção 2: os dados atravessam uma esteira */
+    .extract-scene { min-height: 455px; display: grid; grid-template-columns: .84fr 80px 1.16fr; gap: 13px; align-items: center; }
+    .source-thread { overflow: hidden; border-radius: 13px; background: #efeae2; }
+    .source-thread-head { padding: 11px; color: white; background: #075e54; font-size: .65rem; font-weight: 900; }
+    .source-thread-body { min-height: 320px; display: flex; flex-direction: column; justify-content: center; gap: 9px; padding: 12px; }
+    .source-thread .demo-chat-bubble { max-width: 96%; }
+    .extractor { position: relative; display: grid; place-items: center; width: 68px; height: 68px; border: 2px solid var(--ink); border-radius: 50%; background: var(--yellow); box-shadow: 4px 4px 0 var(--ink); }
+    .extractor::before, .extractor::after { content: ""; position: absolute; border: 2px dashed white; border-radius: 50%; animation: rotate 5s linear infinite; }
+    .extractor::before { inset: -11px; }
+    .extractor::after { inset: -19px; animation-direction: reverse; }
+    .extractor img { position: relative; z-index: 1; width: 50px; height: 50px; object-fit: contain; border-radius: 50%; }
+    .data-token { position: absolute; z-index: 3; left: 36%; top: var(--top); padding: 6px 8px; border: 2px solid var(--ink); border-radius: 999px; color: var(--ink); background: white; box-shadow: 3px 3px 0 var(--yellow); font-size: .55rem; font-weight: 950; opacity: 0; pointer-events: none; }
+    .demo-panel.is-playing .data-token { animation: tokenTravel 1.15s cubic-bezier(.2,.75,.2,1) both; animation-delay: var(--delay); }
+    .live-board { overflow: hidden; border-radius: 8px; background: white; }
+    .live-board-head { display: flex; justify-content: space-between; align-items: center; padding: 13px; color: white; background: var(--ink); }
+    .live-board-head strong { font-size: .7rem; text-transform: uppercase; }
+    .live-board-head span { color: var(--yellow); font-size: .55rem; font-weight: 900; }
+    .live-board-body { padding: 12px 14px 15px; }
+    .live-board-row { display: grid; grid-template-columns: 36% 64%; padding: 10px 0; border-bottom: 1px solid #eee6e0; }
+    .live-board-row b { color: var(--brown); font-size: .57rem; text-transform: uppercase; }
+    .live-board-row span { font-size: .61rem; font-weight: 850; text-align: right; }
+    .board-progress { height: 7px; margin-top: 14px; overflow: hidden; border: 1px solid var(--ink); border-radius: 999px; background: #efe5de; }
+    .board-progress span { display: block; width: 0; height: 100%; background: var(--green); }
+    .demo-panel.is-playing .board-progress span { animation: progressFill 3.7s ease both .5s; }
+    .board-done { margin-top: 10px; color: var(--green); font-size: .59rem; font-weight: 950; text-align: right; text-transform: uppercase; }
+
+    /* Opção 3: a comanda é criada ao vivo */
+    .print-scene { max-width: 535px; margin: auto; padding-top: 8px; }
+    .printer-chat { position: relative; z-index: 2; display: grid; grid-template-columns: 1fr 1fr; gap: 9px; padding: 13px; border-radius: 13px; background: #efeae2; }
+    .printer-chat .demo-chat-bubble { max-width: none; }
+    .printer-chat .demo-chat-bubble:last-child { grid-column: 1 / -1; width: 68%; justify-self: center; text-align: center; }
+    .organizer-slot { position: relative; z-index: 3; width: 70%; height: 47px; display: grid; place-items: center; margin: 17px auto -2px; border: 3px solid var(--ink); border-radius: 10px; color: var(--ink); background: var(--yellow); box-shadow: 5px 5px 0 var(--ink); font-size: .61rem; font-weight: 950; letter-spacing: .08em; text-transform: uppercase; }
+    .organizer-slot::after { content: ""; position: absolute; left: 12%; right: 12%; bottom: 7px; height: 4px; background: var(--ink); }
+    .organizer-light { width: 8px; height: 8px; margin-right: 7px; display: inline-block; border-radius: 50%; background: var(--red); }
+    .demo-panel.is-playing .organizer-light { animation: blink .7s ease-in-out 5 both .7s; }
+    .receipt-sheet { position: relative; z-index: 1; width: 78%; margin: 0 auto; padding: 23px 22px 28px; background: white; transform-origin: top; clip-path: inset(0 0 100% 0); }
+    .receipt-sheet::after { content: ""; position: absolute; left: 0; right: 0; bottom: -10px; height: 11px; background: linear-gradient(135deg, white 6px, transparent 0) 0 0 / 12px 12px repeat-x; }
+    .demo-panel.is-playing .receipt-sheet { animation: printReceipt 1.15s cubic-bezier(.2,.75,.2,1) both 2.25s; }
+    .receipt-title { display: flex; justify-content: space-between; gap: 10px; padding-bottom: 12px; border-bottom: 2px dashed #d9cec7; }
+    .receipt-title strong { font-size: .76rem; text-transform: uppercase; }
+    .receipt-title span { color: var(--red); font-size: .59rem; font-weight: 950; }
+    .receipt-entry { display: flex; justify-content: space-between; gap: 12px; padding: 8px 0; border-bottom: 1px solid #eee6e0; font-size: .6rem; }
+    .receipt-entry b { text-transform: uppercase; }
+    .receipt-entry span { color: var(--brown); font-weight: 750; text-align: right; }
+    .receipt-confirmed { margin-top: 12px; padding: 9px; border: 2px solid var(--green); color: var(--green); font-size: .59rem; font-weight: 950; text-align: center; text-transform: uppercase; }
+
+    @keyframes demoRise { from { opacity: 0; transform: translateY(12px) scale(.98); } to { opacity: 1; transform: none; } }
+    @keyframes demoFill { from { opacity: 0; transform: translateX(-10px); background: rgba(255,206,58,.22); } to { opacity: 1; transform: none; background: transparent; } }
+    @keyframes demoStamp { 0% { opacity: 0; transform: scale(1.22) rotate(-5deg); } 70% { opacity: 1; transform: scale(.96) rotate(1deg); } 100% { opacity: 1; transform: none; } }
+    @keyframes bridgeTravel { 0% { opacity: 0; transform: translateX(0) scale(.75); } 20%, 80% { opacity: 1; } 100% { opacity: 0; transform: translateX(38px) scale(1); } }
+    @keyframes tokenTravel { 0% { opacity: 0; transform: translateX(-24px) scale(.85); } 22%, 75% { opacity: 1; } 100% { opacity: 0; transform: translateX(120px) scale(.95); } }
+    @keyframes progressFill { from { width: 0; } to { width: 100%; } }
+    @keyframes printReceipt { from { opacity: .2; clip-path: inset(0 0 100% 0); transform: translateY(-30px) scaleY(.4); } to { opacity: 1; clip-path: inset(0); transform: none; } }
+    @keyframes blink { 0%, 100% { opacity: .25; } 50% { opacity: 1; box-shadow: 0 0 0 5px rgba(230,61,46,.2); } }
+
     .before-after { background: #fff; }
     .battle { display: grid; grid-template-columns: 1fr 1fr; border: 3px solid var(--ink); border-radius: 18px; overflow: hidden; box-shadow: 8px 8px 0 var(--ink); }
     .battle-side { min-height: 430px; padding: clamp(30px, 5vw, 55px); }
@@ -238,6 +348,11 @@
       .flow-number { margin-bottom: 30px; }
       .benefit { grid-column: span 6; }
       .demo-copy { padding-bottom: 35px; }
+      .demo-picker { grid-template-columns: repeat(3, 1fr); }
+      .demo-tab { padding: 13px; }
+      .demo-tab-copy small { display: none; }
+      .demo-panel .demo-layout { min-height: 0; }
+      .demo-option-visual { min-height: 570px; }
     }
     @media (max-width: 640px) {
       .container { width: min(100% - 24px, 1180px); }
@@ -263,12 +378,42 @@
       .benefit { grid-column: span 12; min-height: 205px; }
       .order-panel { padding: 29px 17px 39px; }
       .order-paper { padding: 23px 18px; }
+      .demo-picker { grid-template-columns: 1fr; }
+      .demo-tab { min-height: 62px; }
+      .demo-tab-copy small { display: block; }
+      .demo-option-visual { min-height: 520px; padding: 29px 17px 39px; }
+      .split-scene { grid-template-columns: minmax(0, 1fr) 35px minmax(0, 1.08fr); gap: 6px; }
+      .mini-wa-body { min-height: 320px; padding-inline: 7px; }
+      .transform-bridge { gap: 8px; }
+      .bridge-copy { display: none; }
+      .bridge-arrow { width: 26px; }
+      .structured-body, .structured-head { padding-inline: 8px; }
+      .structured-row { grid-template-columns: 1fr; gap: 3px; padding: 7px 0; }
+      .structured-row span { text-align: left; }
+      .extract-scene { grid-template-columns: .82fr 48px 1.18fr; gap: 6px; }
+      .source-thread-body { min-height: 285px; padding-inline: 7px; }
+      .extractor { width: 45px; height: 45px; }
+      .extractor img { width: 34px; height: 34px; }
+      .data-token { left: 31%; font-size: .48rem; }
+      .live-board-body { padding-inline: 8px; }
+      .live-board-row { grid-template-columns: 1fr; gap: 3px; padding: 7px 0; }
+      .live-board-row span { text-align: left; }
+      .printer-chat { grid-template-columns: 1fr; }
+      .printer-chat .demo-chat-bubble:last-child { grid-column: auto; width: 88%; }
+      .organizer-slot { width: 86%; }
+      .receipt-sheet { width: 89%; padding-inline: 15px; }
       .battle { grid-template-columns: 1fr; }
       .battle-side { min-height: auto; }
       .founders-photo { padding-right: 7px; }
       .founders-stamp { right: -2px; width: 98px; height: 98px; font-size: .58rem; }
       .final-inner { padding: 76px 5px; }
       footer { align-items: flex-start; flex-direction: column; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .demo-anim, .data-token { opacity: 1 !important; transform: none !important; }
+      .data-token { display: none; }
+      .receipt-sheet { opacity: 1 !important; clip-path: inset(0) !important; transform: none !important; }
+      .board-progress span { width: 100% !important; }
     }
     @keyframes slide { to { transform: translateX(-55%); } }
   </style>
@@ -359,17 +504,138 @@
       </div>
     </section>
 
-    <section class="section" id="demonstracao">
-      <div class="container demo-layout reveal">
-        <div class="demo-copy"><p class="kicker">Demonstração</p><h2>Veja o pedido tomar forma.</h2><p>A conversa acontece de um lado. Do outro, as informações já ficam prontas para a equipe.</p><button class="btn demo-play" id="playDemo" type="button">▶ Reproduzir atendimento</button></div>
-        <div class="order-panel">
-          <div class="order-paper" id="orderPaper">
-            <div class="receipt-head"><strong>Senhor Robô</strong><span>#NOVO</span></div>
-            <div class="receipt-line"><b>Itens</b><span>2 completos</span></div>
-            <div class="receipt-line"><b>Adicionais</b><span>Batata G</span></div>
-            <div class="receipt-line"><b>Bebida</b><span>Coca zero</span></div>
-            <div class="receipt-line"><b>Entrega</b><span>Confirmar endereço</span></div>
-            <div class="receipt-status">✓ Pronto para finalizar</div>
+    <section class="section demo-lab" id="demonstracao">
+      <div class="container">
+        <div class="demo-picker reveal" role="tablist" aria-label="Opções de animação para a demonstração">
+          <button class="demo-tab" id="demo-tab-1" type="button" role="tab" aria-selected="true" aria-controls="demo-panel-1" data-demo-tab="1"><span class="demo-tab-number">01</span><span class="demo-tab-copy"><strong>Lado a lado</strong><small>Conversa e resumo sincronizados</small></span></button>
+          <button class="demo-tab" id="demo-tab-2" type="button" role="tab" aria-selected="false" aria-controls="demo-panel-2" data-demo-tab="2"><span class="demo-tab-number">02</span><span class="demo-tab-copy"><strong>Fluxo inteligente</strong><small>Dados saindo do WhatsApp</small></span></button>
+          <button class="demo-tab" id="demo-tab-3" type="button" role="tab" aria-selected="false" aria-controls="demo-panel-3" data-demo-tab="3"><span class="demo-tab-number">03</span><span class="demo-tab-copy"><strong>Comanda ao vivo</strong><small>O pedido sendo “impresso”</small></span></button>
+        </div>
+
+        <div class="demo-panel" id="demo-panel-1" role="tabpanel" aria-labelledby="demo-tab-1" data-demo-panel="1">
+          <div class="demo-layout reveal">
+            <div class="demo-copy">
+              <span class="option-tag">Opção 01 · Mais didática</span>
+              <p class="kicker">Demonstração</p>
+              <h2>Conversa e pedido lado a lado.</h2>
+              <p class="demo-explainer">Cada resposta do cliente aparece no WhatsApp e preenche o campo certo no pedido, no mesmo ritmo.</p>
+              <button class="btn demo-play demo-replay" type="button">▶ Reproduzir opção 1</button>
+              <p class="demo-status" aria-live="polite">A animação começa quando esta seção aparece.</p>
+            </div>
+            <div class="demo-option-visual">
+              <div class="demo-scene split-scene">
+                <div>
+                  <span class="demo-stage-label">Conversa</span>
+                  <div class="mini-whatsapp">
+                    <div class="mini-wa-head"><span class="mini-wa-avatar">SR</span><span><strong>Senhor Robô</strong><small>online agora</small></span></div>
+                    <div class="mini-wa-body">
+                      <div class="demo-chat-bubble customer demo-anim demo-rise" style="--delay:.25s">Quero uma pizza grande.</div>
+                      <div class="demo-chat-bubble demo-anim demo-rise" style="--delay:.85s">Qual sabor você prefere?</div>
+                      <div class="demo-chat-bubble customer demo-anim demo-rise" style="--delay:1.45s">Meia calabresa, meia marguerita.</div>
+                      <div class="demo-chat-bubble demo-anim demo-rise" style="--delay:2.15s">Quer borda? E como vai pagar?</div>
+                      <div class="demo-chat-bubble customer demo-anim demo-rise" style="--delay:2.85s">Borda de catupiry e Pix.</div>
+                    </div>
+                  </div>
+                </div>
+                <div class="transform-bridge" aria-hidden="true">
+                  <span class="bridge-copy">IA organiza</span>
+                  <span class="bridge-arrow"><i class="bridge-dot" style="--delay:1.1s"></i><i class="bridge-dot" style="--delay:1.9s"></i><i class="bridge-dot" style="--delay:2.7s"></i></span>
+                </div>
+                <div>
+                  <span class="demo-stage-label">Pedido pronto</span>
+                  <div class="structured-order">
+                    <div class="structured-head"><strong>Pedido estruturado</strong><span>#NOVO</span></div>
+                    <div class="structured-body">
+                      <div class="structured-row demo-anim demo-fill" style="--delay:.65s"><b>Tamanho</b><span>Grande</span></div>
+                      <div class="structured-row demo-anim demo-fill" style="--delay:1.8s"><b>Sabor</b><span>½ calabresa<br>½ marguerita</span></div>
+                      <div class="structured-row demo-anim demo-fill" style="--delay:2.55s"><b>Adicional</b><span>Borda de catupiry</span></div>
+                      <div class="structured-row demo-anim demo-fill" style="--delay:3.2s"><b>Pagamento</b><span>Pix</span></div>
+                      <div class="structured-ready demo-anim demo-stamp" style="--delay:3.8s">✓ Pronto para finalizar</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="demo-panel" id="demo-panel-2" role="tabpanel" aria-labelledby="demo-tab-2" data-demo-panel="2" hidden>
+          <div class="demo-layout">
+            <div class="demo-copy">
+              <span class="option-tag">Opção 02 · Mais tecnológica</span>
+              <p class="kicker">Demonstração</p>
+              <h2>As informações saem da conversa.</h2>
+              <p class="demo-explainer">A animação destaca o que a IA entendeu e mostra cada dado chegando ao painel organizado.</p>
+              <button class="btn demo-play demo-replay" type="button">▶ Reproduzir opção 2</button>
+              <p class="demo-status" aria-live="polite">Clique para acompanhar a extração dos dados.</p>
+            </div>
+            <div class="demo-option-visual">
+              <div class="demo-scene extract-scene">
+                <div>
+                  <span class="demo-stage-label">WhatsApp</span>
+                  <div class="source-thread">
+                    <div class="source-thread-head">Cliente · 19:44</div>
+                    <div class="source-thread-body">
+                      <div class="demo-chat-bubble customer demo-anim demo-rise" style="--delay:.2s">Quero 2 hambúrgueres completos.</div>
+                      <div class="demo-chat-bubble demo-anim demo-rise" style="--delay:.75s">Vai querer batata ou bebida?</div>
+                      <div class="demo-chat-bubble customer demo-anim demo-rise" style="--delay:1.3s">Batata grande e Coca zero.</div>
+                      <div class="demo-chat-bubble customer demo-anim demo-rise" style="--delay:1.85s">Rua das Flores, 120. Pix.</div>
+                    </div>
+                  </div>
+                </div>
+                <div class="extractor" aria-label="Senhor Robô organizando os dados"><img src="assets/logos/logo-03-garcom-digital.png" alt=""></div>
+                <div>
+                  <span class="demo-stage-label">Dados organizados</span>
+                  <div class="live-board">
+                    <div class="live-board-head"><strong>Novo pedido</strong><span>AO VIVO</span></div>
+                    <div class="live-board-body">
+                      <div class="live-board-row demo-anim demo-fill" style="--delay:1s"><b>Itens</b><span>2 completos</span></div>
+                      <div class="live-board-row demo-anim demo-fill" style="--delay:1.75s"><b>Adicionais</b><span>Batata G</span></div>
+                      <div class="live-board-row demo-anim demo-fill" style="--delay:2.5s"><b>Bebida</b><span>Coca zero</span></div>
+                      <div class="live-board-row demo-anim demo-fill" style="--delay:3.25s"><b>Entrega</b><span>Rua das Flores, 120</span></div>
+                      <div class="live-board-row demo-anim demo-fill" style="--delay:3.85s"><b>Pagamento</b><span>Pix</span></div>
+                      <div class="board-progress"><span></span></div>
+                      <div class="board-done demo-anim demo-stamp" style="--delay:4.2s">✓ Pedido completo</div>
+                    </div>
+                  </div>
+                </div>
+                <span class="data-token" style="--top:28%;--delay:.8s">2 completos</span>
+                <span class="data-token" style="--top:47%;--delay:1.55s">Batata G</span>
+                <span class="data-token" style="--top:65%;--delay:2.3s">Rua 120</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="demo-panel" id="demo-panel-3" role="tabpanel" aria-labelledby="demo-tab-3" data-demo-panel="3" hidden>
+          <div class="demo-layout">
+            <div class="demo-copy">
+              <span class="option-tag">Opção 03 · Mais impactante</span>
+              <p class="kicker">Demonstração</p>
+              <h2>A conversa vira uma comanda.</h2>
+              <p class="demo-explainer">As mensagens são lidas, organizadas e se transformam visualmente em um pedido pronto para a equipe.</p>
+              <button class="btn demo-play demo-replay" type="button">▶ Reproduzir opção 3</button>
+              <p class="demo-status" aria-live="polite">Clique para “imprimir” uma nova comanda.</p>
+            </div>
+            <div class="demo-option-visual">
+              <div class="demo-scene print-scene">
+                <span class="demo-stage-label">Do WhatsApp para a operação</span>
+                <div class="printer-chat">
+                  <div class="demo-chat-bubble customer demo-anim demo-rise" style="--delay:.2s">Pizza grande, meia frango e meia calabresa.</div>
+                  <div class="demo-chat-bubble customer demo-anim demo-rise" style="--delay:.75s">Borda de catupiry. Pagamento no cartão.</div>
+                  <div class="demo-chat-bubble demo-anim demo-rise" style="--delay:1.3s">Perfeito! Só confirmando seu endereço...</div>
+                </div>
+                <div class="organizer-slot"><span><i class="organizer-light"></i>Senhor Robô organizando</span></div>
+                <div class="receipt-sheet">
+                  <div class="receipt-title"><strong>Comanda digital</strong><span>#0042</span></div>
+                  <div class="receipt-entry"><b>Tamanho</b><span>Grande</span></div>
+                  <div class="receipt-entry"><b>Sabores</b><span>½ frango<br>½ calabresa</span></div>
+                  <div class="receipt-entry"><b>Adicional</b><span>Borda de catupiry</span></div>
+                  <div class="receipt-entry"><b>Pagamento</b><span>Cartão</span></div>
+                  <div class="receipt-confirmed demo-anim demo-stamp" style="--delay:3.35s">✓ Pronta para a equipe</div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -389,15 +655,15 @@
       <div class="container about-grid">
         <figure class="founders-photo reveal">
           <img src="assets/cesar-henrique.png" alt="Cesar e Henrique, amigos e fundadores do Senhor Robô" loading="lazy">
-          <figcaption class="founders-stamp">Criadores</figcaption>
+          <figcaption class="founders-stamp">Cesar + Henrique<br>amigos e desenvolvedores</figcaption>
         </figure>
         <div class="about-copy reveal">
           <p class="kicker">Quem somos</p>
           <h2>Dois amigos. Um problema real para resolver.</h2>
-          <p class="story-lead">Depois de muitos anos atuando com software no mundo corporativo, Cesar e Henrique decidiram usar décadas de experiência técnica para democratizar o acesso à tecnologia de ponta.</p>
-          <p>A ideia nasceu nos comércios que frequentamos. Como clientes, percebemos que a demora no atendimento não era apenas uma frustração, mas também uma oportunidade de evolução para negócios que dependem do delivery.</p>
-          <p>Somos apaixonados por tecnologia e desenvolvimento de software. Criamos o Senhor Robô para agregar valor aos estabelecimentos que fazem parte do nosso dia a dia, com atendimento mais personalizado, direto no WhatsApp e por uma fração do custo das grandes plataformas.</p>
-          <div class="founder-line"><span>Tecnologia com propósito</span><span>Feito com amor</span></div>
+          <p class="story-lead">Depois de muitos anos atuando com software no mundo corporativo, Cesar e Henrique decidiram combinar experiência, tecnologia e vontade de fazer algo mais próximo da vida real.</p>
+          <p>A ideia nasceu nos comércios que frequentamos. Como clientes, vivemos a demora no atendimento, a mensagem sem resposta e a frustração de querer comprar e não conseguir avançar. Percebemos que esses problemas também pesavam na rotina de pizzarias, restaurantes e deliveries.</p>
+          <p>Somos apaixonados por tecnologia e desenvolvimento de software. Criamos o Senhor Robô para agregar valor aos estabelecimentos que fazem parte do nosso dia a dia — com soluções simples, úteis e feitas para problemas que realmente acontecem.</p>
+          <div class="founder-line"><span>Tecnologia com propósito</span><span>Feito com paixão</span></div>
         </div>
       </div>
     </section>
@@ -438,14 +704,73 @@
       });
     });
 
-    const play = document.getElementById('playDemo');
-    const paper = document.getElementById('orderPaper');
-    play.addEventListener('click', () => {
-      paper.classList.remove('playing');
-      void paper.offsetWidth;
-      paper.classList.add('playing');
-      play.textContent = '↻ Ver novamente';
+    const demoTabs = Array.from(document.querySelectorAll('[data-demo-tab]'));
+    const demoPanels = Array.from(document.querySelectorAll('[data-demo-panel]'));
+    const demoSection = document.getElementById('demonstracao');
+    let demoIsVisible = false;
+    let demoCompletionTimer;
+
+    function replayDemo(panel) {
+      window.clearTimeout(demoCompletionTimer);
+      demoPanels.forEach((item) => item.classList.remove('is-playing'));
+      void panel.offsetWidth;
+      panel.classList.add('is-playing');
+
+      const status = panel.querySelector('.demo-status');
+      const replayButton = panel.querySelector('.demo-replay');
+      status.textContent = 'Transformando a conversa em um pedido estruturado...';
+      replayButton.textContent = '↻ Reproduzir novamente';
+
+      demoCompletionTimer = window.setTimeout(() => {
+        status.textContent = 'Pedido estruturado e pronto para a equipe.';
+      }, 4700);
+    }
+
+    function selectDemo(id, moveFocus) {
+      demoTabs.forEach((tab) => {
+        const selected = tab.dataset.demoTab === id;
+        tab.setAttribute('aria-selected', String(selected));
+        tab.tabIndex = selected ? 0 : -1;
+        if (selected && moveFocus) tab.focus();
+      });
+
+      let activePanel;
+      demoPanels.forEach((panel) => {
+        const selected = panel.dataset.demoPanel === id;
+        panel.hidden = !selected;
+        panel.classList.remove('is-playing');
+        if (selected) activePanel = panel;
+      });
+
+      if (demoIsVisible && activePanel) replayDemo(activePanel);
+    }
+
+    demoTabs.forEach((tab, index) => {
+      tab.tabIndex = index === 0 ? 0 : -1;
+      tab.addEventListener('click', () => selectDemo(tab.dataset.demoTab, false));
+      tab.addEventListener('keydown', (event) => {
+        if (event.key !== 'ArrowRight' && event.key !== 'ArrowLeft') return;
+        event.preventDefault();
+        const direction = event.key === 'ArrowRight' ? 1 : -1;
+        const next = (index + direction + demoTabs.length) % demoTabs.length;
+        selectDemo(demoTabs[next].dataset.demoTab, true);
+      });
     });
+
+    document.querySelectorAll('.demo-replay').forEach((button) => {
+      button.addEventListener('click', () => replayDemo(button.closest('.demo-panel')));
+    });
+
+    const demoAnimationObserver = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (!entry.isIntersecting || demoIsVisible) return;
+        demoIsVisible = true;
+        const activePanel = demoPanels.find((panel) => !panel.hidden);
+        if (activePanel) replayDemo(activePanel);
+        demoAnimationObserver.unobserve(entry.target);
+      });
+    }, { threshold: .28 });
+    demoAnimationObserver.observe(demoSection);
 
     const observer = new IntersectionObserver((entries) => {
       entries.forEach((entry) => {
